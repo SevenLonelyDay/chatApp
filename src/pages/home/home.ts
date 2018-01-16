@@ -7,8 +7,13 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  toUser: object;
 
+  constructor(public navCtrl: NavController) {
+    this.toUser = {
+      toUserId: '210000198410281948',
+      toUserName: 'Hancock'
+    }
   }
 
 }

@@ -11,6 +11,17 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import * as fundebug from 'fundebug-javascript';
+fundebug.apikey = "01869837e24763f1f8d2ec4e26ac21f1063c9a91b0fea6286879240068c56eac";
+
+// 定义FundebugErrorHandler
+class FundebugErrorHandler implements ErrorHandler {
+  handleError(err: any): void {
+    fundebug.notifyError(err);
+    console.error('错误信息', err);
+  }
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +45,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: ErrorHandler, useClass: FundebugErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
